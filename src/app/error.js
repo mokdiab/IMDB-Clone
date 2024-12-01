@@ -1,9 +1,11 @@
 "use client";
 
 import { useTheme } from "@mui/material/styles";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 export default function ErrorPage({ error, reset }) {
+  const t = useTranslations("errorPage");
   const theme = useTheme();
 
   return (
@@ -19,13 +21,13 @@ export default function ErrorPage({ error, reset }) {
           className="text-4xl font-bold"
           style={{ color: theme.palette.primary.main }}
         >
-          Something went wrong!
+          {t("generalError.title")}
         </h1>
         <p
           className="text-lg mt-4"
           style={{ color: theme.palette.text.secondary }}
         >
-          {error?.message || "An unexpected error occurred."}
+          {error?.message || t("generalError.description")}
         </p>
         <div className="mt-6 space-x-4">
           <button
@@ -36,7 +38,7 @@ export default function ErrorPage({ error, reset }) {
               color: theme.palette.primary.contrastText,
             }}
           >
-            Try Again
+            {t("generalError.tryAgain")}
           </button>
           <Link
             href="/"
@@ -46,7 +48,7 @@ export default function ErrorPage({ error, reset }) {
               color: theme.palette.secondary.contrastText,
             }}
           >
-            Go to Homepage
+            {t("generalError.goBack")}
           </Link>
         </div>
       </div>

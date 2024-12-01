@@ -1,13 +1,14 @@
 "use client";
 
 import { useTheme } from "@mui/material/styles";
-
+import { useTranslations } from "next-intl";
 export default function Spinner() {
+  const t = useTranslations("loading");
   const theme = useTheme();
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen"
+      className="flex flex-col items-center justify-center min-h-screen"
       style={{
         backgroundColor: theme.palette.background.default,
         color: theme.palette.text.primary,
@@ -26,7 +27,7 @@ export default function Spinner() {
           color: theme.palette.text.secondary,
         }}
       >
-        Loading, please wait...
+        {t("message")}
       </p>
     </div>
   );

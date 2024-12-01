@@ -1,9 +1,11 @@
 "use client";
 
 import { useTheme } from "@mui/material/styles";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 export default function NotFound() {
+  const t = useTranslations("errorPage");
   const theme = useTheme();
 
   return (
@@ -19,19 +21,19 @@ export default function NotFound() {
           className="text-6xl font-bold mb-4"
           style={{ color: theme.palette.primary.main }}
         >
-          404
+          {t("404error.title")}
         </h1>
         <p
           className="text-xl mb-6"
           style={{ color: theme.palette.text.secondary }}
         >
-          The page you&apos;re looking for doesn&apos;t exist.
+          {t("404error.description")}
         </p>
         <Link
           href="/"
           className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700"
         >
-          Go Back Home
+          {t("404error.goBack")}
         </Link>
       </div>
     </div>

@@ -10,11 +10,12 @@ import {
   Grid,
 } from "@mui/material";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const SearchBar = ({ language }) => {
+  const t = useTranslations("SearchPage");
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const [query, setQuery] = useState(searchParams.get("query") || "");
   const [error, setError] = useState(false);
   const [includeAdult, setIncludeAdult] = useState(
@@ -58,12 +59,12 @@ const SearchBar = ({ language }) => {
           <TextField
             fullWidth
             size="small"
-            label="Search"
+            label={t("searchTerm")}
             variant="outlined"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             error={error}
-            helperText={error ? "Please enter a movie name" : ""}
+            helperText={error ? t("movieNameValidation") : ""}
           />
         </Grid>
 
@@ -76,7 +77,7 @@ const SearchBar = ({ language }) => {
                 size="small"
               />
             }
-            label="Adult"
+            label={t("adult")}
             sx={{ marginLeft: 0 }}
           />
         </Grid>
@@ -85,7 +86,7 @@ const SearchBar = ({ language }) => {
           <TextField
             fullWidth
             size="small"
-            label="Release Year"
+            label={t("primaryReleaseYear")}
             variant="outlined"
             type="number"
             value={primaryReleaseYear}
@@ -97,7 +98,7 @@ const SearchBar = ({ language }) => {
           <TextField
             fullWidth
             size="small"
-            label="Year"
+            label={t("year")}
             variant="outlined"
             type="number"
             value={year}
@@ -114,7 +115,7 @@ const SearchBar = ({ language }) => {
             fullWidth
             sx={{ fontSize: "0.75rem", padding: "4px 8px" }}
           >
-            Go
+            {t("searchTerm")}
           </Button>
         </Grid>
       </Grid>
