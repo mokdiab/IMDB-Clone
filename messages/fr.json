@@ -1,0 +1,21 @@
+{
+  "HomePage": {
+    "navigation": {
+      "home": "Accueil",
+      "about": "À propos"
+    },
+    "navbar": {
+      "trending": "Tendances",
+      "topRated": "Les mieux notés"
+    },
+    "LanguageMenu": {
+      "en": "English",
+      "fr": "Français",
+      "ar": "العربية"
+    },
+    "sections": {
+      "title": "Bienvenue sur notre site!",
+      "description": "Ceci est un site multilingue."
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "HomePage": {
+    "navigation": {
+      "home": "الرئيسية",
+      "about": "حول"
+    },
+    "navbar": {
+      "trending": "الشائع",
+      "topRated": "الأعلى تقييماً"
+    },
+    "LanguageMenu": {
+      "en": "English",
+      "fr": "Français",
+      "ar": "العربية"
+    },
+    "sections": {
+      "title": "مرحبًا بكم في موقعنا!",
+      "description": "هذا موقع متعدد اللغات."
+    }
+  }
+}
