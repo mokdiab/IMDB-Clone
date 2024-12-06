@@ -30,7 +30,7 @@ const Header = () => {
           <div className="w-full flex justify-between">
             <h2 className="text-2xl">
               <span className="font-bold bg-amber-500 py-1 px-2 rounded-lg mr-1">
-                IMDB
+                Fatma
               </span>
             </h2>
             <button className="text-2xl mb-5 self-end" onClick={toggleNav}>
@@ -56,7 +56,7 @@ const Header = () => {
         <div className="logo-container items-center gap-2 text-lg  hidden md:flex">
           <h2 className="text-2xl">
             <span className="font-bold bg-amber-500 py-1 px-2 rounded-lg mr-1">
-              IMDB
+              Fatma
             </span>
             <span className="text-xl">Clone</span>
           </h2>
