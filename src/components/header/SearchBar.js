@@ -10,11 +10,12 @@ import {
   Grid,
 } from "@mui/material";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const SearchBar = ({ language }) => {
+  const t = useTranslations("SearchPage");
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const [query, setQuery] = useState(searchParams.get("query") || "");
   const [error, setError] = useState(false);
   const [includeAdult, setIncludeAdult] = useState(
@@ -24,13 +25,33 @@ const SearchBar = ({ language }) => {
     searchParams.get("primary_release_year") || ""
   );
   const [year, setYear] = useState(searchParams.get("year") || "");
+  const [primaryReleaseYearError, setPrimaryReleaseYearError] = useState(false);
+  const [yearError, setYearError] = useState(false);
+
+  const currentYear = new Date().getFullYear();
 
   const handleSearch = (e) => {
     e.preventDefault();
+    setError(false);
+    setPrimaryReleaseYearError(false);
+    setYearError(false);
+
+    if (
+      primaryReleaseYear &&
+      (primaryReleaseYear < 1900 || primaryReleaseYear > currentYear)
+    ) {
+      setPrimaryReleaseYearError(true);
+    }
+
+    if (year && (year < 1900 || year > currentYear)) {
+      setYearError(true);
+    }
+
     if (!query.trim()) {
       setError(true);
       return;
     }
+
     const params = new URLSearchParams();
     if (query) params.set("query", query);
     params.set("include_adult", includeAdult);
@@ -58,12 +79,12 @@ const SearchBar = ({ language }) => {
           <TextField
             fullWidth
             size="small"
-            label="Search"
+            label={t("searchTerm")}
             variant="outlined"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             error={error}
-            helperText={error ? "Please enter a movie name" : ""}
+            helperText={error ? t("movieNameValidation") : ""}
           />
         </Grid>
 
@@ -76,7 +97,7 @@ const SearchBar = ({ language }) => {
                 size="small"
               />
             }
-            label="Adult"
+            label={t("adult")}
             sx={{ marginLeft: 0 }}
           />
         </Grid>
@@ -85,11 +106,20 @@ const SearchBar = ({ language }) => {
           <TextField
             fullWidth
             size="small"
-            label="Release Year"
+            label={t("primaryReleaseYear")}
             variant="outlined"
             type="number"
             value={primaryReleaseYear}
             onChange={(e) => setPrimaryReleaseYear(e.target.value)}
+            helperText={
+              primaryReleaseYearError
+                ? t("primaryReleaseYearValidation", {
+                    min: 1900,
+                    max: currentYear,
+                  })
+                : ""
+            }
+            error={primaryReleaseYearError}
           />
         </Grid>
 
@@ -97,11 +127,17 @@ const SearchBar = ({ language }) => {
           <TextField
             fullWidth
             size="small"
-            label="Year"
+            label={t("year")}
             variant="outlined"
             type="number"
             value={year}
             onChange={(e) => setYear(e.target.value)}
+            helperText={
+              yearError
+                ? t("yearValidation", { min: 1900, max: currentYear })
+                : ""
+            }
+            error={yearError}
           />
         </Grid>
 
@@ -114,7 +150,7 @@ const SearchBar = ({ language }) => {
             fullWidth
             sx={{ fontSize: "0.75rem", padding: "4px 8px" }}
           >
-            Go
+            {t("searchTerm")}
           </Button>
         </Grid>
       </Grid>

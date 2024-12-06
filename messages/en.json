@@ -39,11 +39,34 @@
     "budget": "Budget",
     "revenue": "Revenue",
     "productionCompanies": "Production Companies",
-    "visitHomepage": "Visit Homepage"
+    "visitHomepage": "Visit Homepage",
+    "notFound": "Movie not found"
   },
   "SearchPage": {
-    "results": "Results",
-    "noSearchTerm": "Please enter a search query to view results.",
-    "noResultsMessage": "No results found for \"{query}\". Please try a different search term."
+    "movieNameValidation": "Please enter a movie name",
+    "noSearchTerm": "Please enter a movie name to view results.",
+    "noResults": "No results found for \"{query}\". Please try a different search term.",
+    "adult": "Include Adult",
+    "year": "Year",
+    "primaryReleaseYear": "Primary Release Year",
+    "searchTerm": "Search",
+    "primaryReleaseYearValidation": "Enter a valid year between \"{min}\" and \"{max}\".",
+    "yearValidation": "Enter a valid year between \"{min}\" and \"{max}\"."
+  },
+  "errorPage": {
+    "404error": {
+      "title": "404",
+      "description": "The page you're looking for doesn't exist.",
+      "goBack": "Go Back Home"
+    },
+    "generalError": {
+      "title": "Something went wrong!",
+      "description": "An unexpected error occurred.",
+      "goBack": "Go Back Home",
+      "tryAgain": "Try Again"
+    }
+  },
+  "loading": {
+    "message": "Loading, please wait..."
   }
 }

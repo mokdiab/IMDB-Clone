@@ -1,6 +1,7 @@
 import { HomeGridTranslation, SearchBar, Pagination } from "@/components";
 import { getLocale } from "next-intl/server";
 import { fetchFromAPI } from "./utils/fetching";
+import { getLanguageWithLocale } from "./utils/utils";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -21,10 +22,11 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Home({ searchParams }) {
+export default async function Home({ searchParams: params }) {
   const locale = await getLocale();
-  const language = `${locale}-${locale.toUpperCase()}`;
-  const genre = searchParams.genre || "fetchTrending";
+  const language = getLanguageWithLocale(locale);
+  const searchParams = await params;
+  const genre = searchParams?.genre || "fetchTrending";
   const category =
     genre === "topRated" ? "movie/top_rated" : "trending/movie/week";
 
