@@ -1,12 +1,10 @@
 import { fetchFromAPI } from "@/app/utils/fetching";
 import { getLocale } from "next-intl/server";
 import { MovieDetails } from "@/components";
-import { useTranslations } from "next-intl";
-import { getLanguageWithLocale } from "@/utils";
-
+import { getLanguageWithLocale } from "@/app/utils/utils";
 export default async function MovieDetailsPage({ params }) {
-  const t = useTranslations("DetailsPage");
-  const { movieslug: id } = params;
+  const resolvedParams = await params;
+  const { movieslug: id } = resolvedParams;
 
   const locale = await getLocale();
   const language = getLanguageWithLocale(locale);

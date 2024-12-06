@@ -1,17 +1,17 @@
 import { fetchFromAPI } from "../utils/fetching";
-import { Pagination, SearchBar, HomeGridTranslation } from "@/components";
-import { useTranslations } from "next-intl";
+import { SearchResults, SearchBar } from "@/components";
+import { getLocale } from "next-intl/server";
+import { getLanguageWithLocale } from "../utils/utils";
 
-export default async function SearchPage({ searchParams }) {
-  const {
-    query,
-    include_adult,
-    primary_release_year,
-    year,
-    page = 1,
-  } = searchParams;
-
-  const language = "en-US";
+export default async function SearchPage({ searchParams: params }) {
+  const searchParams = await params;
+  const locale = await getLocale();
+  const query = searchParams?.query || "";
+  const includeAdult = searchParams?.include_adult === "true";
+  const primaryReleaseYear = searchParams?.primary_release_year || null;
+  const year = searchParams?.year || null;
+  const currentPage = parseInt(searchParams?.page, 10) || 1;
+  const language = getLanguageWithLocale(locale);
 
   if (!query || query.trim() === "") {
     return (
@@ -36,11 +36,7 @@ export default async function SearchPage({ searchParams }) {
   return (
     <div className="align-element my-4">
       <SearchBar />
-      <HomeGridTranslation data={data.results} />
-      <Pagination
-        currentPage={parseInt(page, 10)}
-        totalPages={data.total_pages}
-      />
+      <SearchResults data={data} query={query} page={currentPage} />
     </div>
   );
 }
