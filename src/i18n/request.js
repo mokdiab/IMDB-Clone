@@ -1,12 +1,26 @@
 import { getRequestConfig } from "next-intl/server";
-import { cookies } from "next/headers"; // Import cookies helper
+import { cookies } from "next/headers";
 
 export default getRequestConfig(async () => {
-  // Try to read the user's preferred language from cookies
-  const userLocale = cookies().get("locale")?.value || "en";
+  const cookieStore = await cookies();
+  const userLocale = cookieStore.get("locale")?.value || "en";
 
-  return {
-    locale: userLocale,
-    messages: (await import(`../../messages/${userLocale}.json`)).default,
-  };
+  try {
+    const messages = (await import(`../../messages/${userLocale}.json`))
+      .default;
+
+    return {
+      locale: userLocale,
+      messages,
+    };
+  } catch (error) {
+    console.error(`Failed to load messages for locale "${userLocale}":`, error);
+
+    const fallbackMessages = (await import(`../../messages/en.json`)).default;
+
+    return {
+      locale: "en",
+      messages: fallbackMessages,
+    };
+  }
 });

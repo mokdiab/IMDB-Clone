@@ -8,3 +8,5 @@ export { default as HomeGridTranslation } from "./HomeGridTranslation";
 export { default as Spinner } from "./Spinner";
 export { default as MovieDetails } from "./MovieDetails";
 export { default as Pagination } from "./Pagination";
+export { default as SearchResults } from "./SearchResults";
+export { default as ClientDetails } from "./ClientDetails";

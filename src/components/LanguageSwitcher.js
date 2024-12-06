@@ -1,7 +1,8 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, MenuItem, Button } from "@mui/material";
 
 export default function LanguageSwitcher() {
@@ -21,21 +22,24 @@ export default function LanguageSwitcher() {
   };
 
   const changeLanguage = (locale) => {
-    document.cookie = `locale=${locale}; path=/`;
-    router.replace(window.location.pathname);
-    router.refresh();
     handleClose();
+    if (typeof window !== "undefined") {
+      setTimeout(() => {
+        document.cookie = `locale=${locale}; path=/`;
+        router.replace(window.location.pathname);
+        router.refresh();
+      }, 0);
+    }
   };
 
   return (
-    <div className="relative inline-block text-left">
+    <div>
       <Button
         id="language-button"
         aria-controls={isOpen ? "language-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={isOpen ? "true" : undefined}
         onClick={handleClick}
-        className="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg"
       >
         {currentLocale === "en"
           ? "English"
@@ -43,15 +47,11 @@ export default function LanguageSwitcher() {
           ? "Français"
           : "العربية"}
       </Button>
-
       <Menu
         id="language-menu"
         anchorEl={anchorEl}
         open={isOpen}
         onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "language-button",
-        }}
       >
         <MenuItem
           onClick={() => changeLanguage("en")}
