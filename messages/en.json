@@ -49,7 +49,9 @@
     "adult": "Include Adult",
     "year": "Year",
     "primaryReleaseYear": "Primary Release Year",
-    "searchTerm": "Search"
+    "searchTerm": "Search",
+    "primaryReleaseYearValidation": "Enter a valid year between \"{min}\" and \"{max}\".",
+    "yearValidation": "Enter a valid year between \"{min}\" and \"{max}\"."
   },
   "errorPage": {
     "404error": {

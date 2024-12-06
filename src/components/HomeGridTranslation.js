@@ -3,7 +3,6 @@ import Link from "next/link";
 import { MdOutlineStarRate } from "react-icons/md";
 
 export default function HomeGridTranslation({ data }) {
-
   return (
     <div className="mt-10">
       <div className="grid md:grid-cols-4 gap-4">
@@ -18,7 +17,11 @@ export default function HomeGridTranslation({ data }) {
               className="relative w-full h-72 overflow-hidden"
             >
               <Image
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                    : "/fallback.jpg"
+                }
                 alt={movie.title}
                 fill
                 className="group-hover:opacity-80 duration-300 transition-opacity"

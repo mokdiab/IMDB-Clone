@@ -37,15 +37,20 @@ export default function ClientDetails({ movie, locale }) {
     return `${hours}h ${mins}m`;
   };
 
-  const formatCurrency = (value) =>
-    value.toLocaleString(locale, {
+  const formatCurrency = (value, locale) => {
+    if (typeof window === "undefined") {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(value);
+    }
+    return new Intl.NumberFormat(locale || "en-US", {
       style: "currency",
       currency: "USD",
-    });
-
+    }).format(value);
+  };
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <div
         className="bg-cover bg-center"
         style={{
@@ -57,7 +62,11 @@ export default function ClientDetails({ movie, locale }) {
             <div className="flex justify-center md:justify-start w-full md:w-auto">
               <div className="relative w-[300px] md:w-[350px] h-[450px] md:h-[450px]">
                 <Image
-                  src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                  src={
+                    poster_path
+                      ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                      : "/fallback.jpg"
+                  }
                   alt={title}
                   className="rounded-lg shadow-lg object-cover"
                   fill
@@ -95,7 +104,7 @@ export default function ClientDetails({ movie, locale }) {
               </div>
 
               <div className="my-4">
-                <Typography variant="body2">
+                <Typography variant="body2" component="div">
                   <strong>{t("genres")}: </strong>
                   {genres.map((genre) => (
                     <Chip
@@ -104,11 +113,11 @@ export default function ClientDetails({ movie, locale }) {
                       sx={{
                         backgroundColor: "#fef3c7",
                         color: "black",
-                        "&.MuiChip-root:hover": {
-                          backgroundColor: "gray",
+                        ":hover": {
+                          backgroundColor: "#fcd34d",
                         },
                       }}
-                      className="mr-2 mb-2 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+                      className="mr-2 mb-2 dark:bg-gray-700 dark:shadow-md dark:shadow-gray-500 dark:text-white dark:hover:bg-gray-500"
                     />
                   ))}
                 </Typography>
@@ -121,43 +130,45 @@ export default function ClientDetails({ movie, locale }) {
                 </Typography>
                 <Typography variant="body2">
                   <strong>{t("rating")}:</strong> {vote_average.toFixed(1)} (
-                  {vote_count.toLocaleString()} {t("votes")})
+                  {vote_count} {t("votes")})
                 </Typography>
               </div>
-              <Button
-                variant="contained"
-                color="primary"
-                href={homepage}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4"
-              >
-                {t("visitHomepage")}
-              </Button>
+              {homepage && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  href={homepage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4"
+                >
+                  {t("visitHomepage")}
+                </Button>
+              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Details Section */}
       <div className="container mx-auto px-6 py-10">
         <Box className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Financials */}
-          <Card className="bg-gray-800 text-white dark:bg-gray-700">
+          <Card className=" dark:bg-gray-700 dark:shadow-sm dark:shadow-gray-500">
             <CardContent>
               <Typography variant="h5" className="mb-4">
                 {t("financials")}
               </Typography>
               <Typography variant="body2">
-                <strong>{t("budget")}:</strong> {formatCurrency(budget)}
+                <strong>{t("budget")}:</strong> {formatCurrency(budget, locale)}
               </Typography>
               <Typography variant="body2">
-                <strong>{t("revenue")}:</strong> {formatCurrency(revenue)}
+                <strong>{t("revenue")}:</strong>{" "}
+                {formatCurrency(revenue, locale)}
               </Typography>
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-800 text-white dark:bg-gray-700">
+          <Card className="  dark:bg-gray-700 dark:shadow-sm dark:shadow-gray-500">
             <CardContent>
               <Typography variant="h5" className="mb-4">
                 {t("productionCompanies")}
@@ -167,17 +178,18 @@ export default function ClientDetails({ movie, locale }) {
                   key={company.id}
                   className="flex items-center gap-4 mb-4 last:mb-0"
                 >
-                  {company.logo_path ? (
-                    <Image
-                      src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
-                      alt={company.name}
-                      width={50}
-                      height={50}
-                      className="rounded-lg bg-white p-1"
-                    />
-                  ) : (
-                    <div className="h-10 w-10 bg-gray-700 rounded-lg"></div>
-                  )}
+                  <Image
+                    src={
+                      company.logo_path
+                        ? `https://image.tmdb.org/t/p/w200${company.logo_path}`
+                        : "/fallback.jpg"
+                    }
+                    alt={company.name}
+                    width={50}
+                    height={50}
+                    className="rounded-lg bg-white p-1"
+                  />
+
                   <Typography variant="body2">{company.name}</Typography>
                 </div>
               ))}

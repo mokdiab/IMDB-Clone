@@ -6,7 +6,8 @@
     },
     "navbar": {
       "trending": "Tendances",
-      "topRated": "Les mieux notés"
+      "topRated": "Les mieux notés",
+      "search": "Rechercher"
     },
     "LanguageMenu": {
       "en": "English",
@@ -14,8 +15,59 @@
       "ar": "العربية"
     },
     "sections": {
-      "title": "Bienvenue sur notre site!",
+      "title": "Bienvenue sur notre site !",
       "description": "Ceci est un site multilingue."
+    },
+    "pagination": {
+      "previous": "Précédent",
+      "next": "Suivant"
     }
+  },
+  "About": {
+    "title": "À propos",
+    "description1": "Bienvenue sur notre site de base de données de films ! Nous sommes une équipe de passionnés de cinéma réunis pour créer une destination unique pour tous vos besoins liés au cinéma.",
+    "description2": "Notre site est conçu pour vous fournir une base de données complète de films du monde entier, ainsi que les dernières actualités, critiques et bandes-annonces. Notre base de données est constamment mise à jour avec les dernières sorties, vous garantissant un accès aux nouveautés du monde du cinéma. Vous pouvez rechercher des films par titre, réalisateur, acteur, genre ou date de sortie, ce qui facilite la recherche du film parfait pour toute occasion.",
+    "description3": "En plus de notre vaste base de données, nous proposons également une plateforme permettant aux passionnés de cinéma de se connecter et de partager leurs avis sur les dernières sorties. Notre section communauté comprend un forum où vous pouvez discuter de vos films préférés avec d'autres passionnés et lire des critiques et des notes d'autres utilisateurs. Nous avons également une section dédiée aux actualités et bandes-annonces de films pour vous tenir informé des dernières nouveautés dans le monde du cinéma. Merci de visiter notre site et nous espérons que vous apprécierez votre temps à explorer notre base de données. Si vous avez des commentaires ou des suggestions, n'hésitez pas à nous contacter. Nous cherchons toujours à améliorer l'expérience utilisateur sur notre site. Bonne navigation !"
+  },
+  "DetailsPage": {
+    "genres": "Genres",
+    "releaseDate": "Date de sortie",
+    "runtime": "Durée",
+    "rating": "Évaluation",
+    "votes": "votes",
+    "financials": "Informations financières",
+    "budget": "Budget",
+    "revenue": "Revenu",
+    "productionCompanies": "Sociétés de production",
+    "visitHomepage": "Visiter la page d'accueil",
+    "notFound": "Film introuvable"
+  },
+  "SearchPage": {
+    "movieNameValidation": "Veuillez entrer un nom de film",
+    "noSearchTerm": "Veuillez entrer un nom de film pour voir les résultats.",
+    "noResults": "Aucun résultat trouvé pour \"{query}\". Veuillez essayer un autre terme de recherche.",
+    "adult": "Inclure les contenus pour adultes",
+    "year": "Année",
+    "primaryReleaseYear": "Année de sortie principale",
+    "searchTerm": "Recherche",
+
+    "primaryReleaseYearValidation": "Entrez une année valide entre \"{min}\" et \"{max}\".",
+    "yearValidation": "Entrez une année valide entre \"{min}\" et \"{max}\"."
+  },
+  "errorPage": {
+    "404error": {
+      "title": "404",
+      "description": "La page que vous recherchez n'existe pas.",
+      "goBack": "Retourner à l'accueil"
+    },
+    "generalError": {
+      "title": "Une erreur est survenue !",
+      "description": "Une erreur inattendue est survenue.",
+      "goBack": "Retourner à l'accueil",
+      "tryAgain": "Réessayer"
+    }
+  },
+  "loading": {
+    "message": "Chargement, veuillez patienter..."
   }
 }

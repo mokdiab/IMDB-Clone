@@ -13,7 +13,7 @@ export default async function RootLayout({ children, params }) {
   const messages = await getMessages();
   const direction = locale === "ar" ? "rtl" : "ltr";
   return (
-    <html lang={locale} dir={direction}>
+    <html lang={locale} dir={direction} data-gr="false">
       <body>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ThemeModeProvider>
