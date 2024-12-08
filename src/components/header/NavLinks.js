@@ -5,7 +5,7 @@ const navigation = [
   { id: "home", title: "home", address: "/" },
   { id: "about", title: "about", address: "about" },
 ];
-const NavLinks = () => {
+const NavLinks = ({ toggleNav }) => {
   const t = useTranslations("HomePage");
   return (
     <>
@@ -15,6 +15,7 @@ const NavLinks = () => {
             <MenuItem
               address={`/${item.address}`}
               title={t(`navigation.${item.title}`)}
+              toggleNav={toggleNav}
             />
           </li>
         );

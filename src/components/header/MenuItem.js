@@ -2,10 +2,15 @@
 import { useTheme } from "@mui/material";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-const MenuItem = ({ address, title, param, children }) => {
+const MenuItem = ({ address, title, param, toggleNav, children }) => {
   const theme = useTheme();
   const searchParams = useSearchParams();
   const genre = searchParams.get("genre") || "trending";
+  const handleClick = () => {
+    if (toggleNav) {
+      toggleNav();
+    }
+  };
   return (
     <Link
       href={param ? `/?genre=${param}` : address}
@@ -24,6 +29,7 @@ const MenuItem = ({ address, title, param, children }) => {
       onMouseLeave={(e) =>
         (e.currentTarget.style.color = theme.palette.text.primary)
       }
+      onClick={handleClick}
     >
       {title}
     </Link>

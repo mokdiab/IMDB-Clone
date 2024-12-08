@@ -1,9 +1,13 @@
+"use client";
 import { configureStore } from "@reduxjs/toolkit";
-import { createWrapper } from "next-redux-wrapper";
+import movieSlice from "./slices/movieSlice";
+import { Provider } from "react-redux";
 
-const makeStore = () =>
-  configureStore({
-    reducer: {},
-  });
-
-export const wrapper = createWrapper(makeStore);
+const store = configureStore({
+  reducer: {
+    movie: movieSlice,
+  },
+});
+export default function StoreProvider({ children }) {
+  return <Provider store={store}>{children}</Provider>;
+}

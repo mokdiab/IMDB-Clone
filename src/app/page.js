@@ -1,7 +1,7 @@
-import { HomeGridTranslation, SearchBar, Pagination } from "@/components";
+import { SearchBar, MovieList, Spinner } from "@/components";
 import { getLocale } from "next-intl/server";
-import { fetchFromAPI } from "./utils/fetching";
 import { getLanguageWithLocale } from "./utils/utils";
+import { Suspense } from "react";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -27,17 +27,21 @@ export default async function Home({ searchParams: params }) {
   const language = getLanguageWithLocale(locale);
   const searchParams = await params;
   const genre = searchParams?.genre || "fetchTrending";
-  const category =
+  const endpoint =
     genre === "topRated" ? "movie/top_rated" : "trending/movie/week";
 
   const currentPage = parseInt(searchParams.page, 10) || 1;
-  const data = await fetchFromAPI(category, language, currentPage);
 
   return (
     <div className="align-element my-4">
       <SearchBar language={language} />
-      <HomeGridTranslation data={data.results || []} />
-      <Pagination currentPage={currentPage} totalPages={data.total_pages} />
+      <Suspense fallback={<Spinner />}>
+        <MovieList
+          endpoint={endpoint}
+          language={language}
+          currentPage={currentPage}
+        />
+      </Suspense>
     </div>
   );
 }

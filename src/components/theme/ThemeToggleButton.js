@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeMode } from "../components/ThemeContext";
+import { useThemeMode } from "./ThemeContext";
 import IconButton from "@mui/material/IconButton";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";

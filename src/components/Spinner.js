@@ -8,7 +8,7 @@ export default function Spinner() {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen"
+      className="flex flex-col items-center justify-center pt-10 min-h-72"
       style={{
         backgroundColor: theme.palette.background.default,
         color: theme.palette.text.primary,

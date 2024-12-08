@@ -1,5 +1,5 @@
 "use client";
-import ThemeToggleButton from "../ThemeToggleButton";
+import ThemeToggleButton from "../theme/ThemeToggleButton";
 
 import NavLinks from "./NavLinks";
 import { useState } from "react";
@@ -38,7 +38,7 @@ const Header = () => {
             </button>
           </div>
           <ul className="flex flex-col gap-4">
-            <NavLinks />
+            <NavLinks toggleNav={toggleNav} />
           </ul>
         </div>
 

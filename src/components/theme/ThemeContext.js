@@ -4,13 +4,11 @@ import { createContext, useState, useMemo, useContext, useEffect } from "react";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { lightTheme, darkTheme } from "./theme";
-
 const ThemeModeContext = createContext();
 
 export function ThemeModeProvider({ children }) {
-  const [mode, setMode] = useState("light"); // Default value for SSR
+  const [mode, setMode] = useState("light");
 
-  // Hydrate the theme from localStorage after the component mounts
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
@@ -18,7 +16,6 @@ export function ThemeModeProvider({ children }) {
     }
   }, []);
 
-  // Update localStorage and document classes when the theme changes
   useEffect(() => {
     localStorage.setItem("theme", mode);
     if (mode === "dark") {
