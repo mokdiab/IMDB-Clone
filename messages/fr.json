@@ -46,6 +46,7 @@
     "movieNameValidation": "Veuillez entrer un nom de film",
     "noSearchTerm": "Veuillez entrer un nom de film pour voir les résultats.",
     "noResults": "Aucun résultat trouvé pour \"{query}\". Veuillez essayer un autre terme de recherche.",
+    "results": "Résultats pour \"{query}\"",
     "adult": "Inclure les contenus pour adultes",
     "year": "Année",
     "primaryReleaseYear": "Année de sortie principale",

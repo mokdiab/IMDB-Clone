@@ -45,6 +45,7 @@
   "SearchPage": {
     "movieNameValidation": "Please enter a movie name",
     "noSearchTerm": "Please enter a movie name to view results.",
+    "results": "Results for \"{query}\"",
     "noResults": "No results found for \"{query}\". Please try a different search term.",
     "adult": "Include Adult",
     "year": "Year",

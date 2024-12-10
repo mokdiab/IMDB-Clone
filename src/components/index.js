@@ -12,3 +12,4 @@ export { default as SearchResults } from "./SearchResults";
 export { default as ClientDetails } from "./movies/ClientDetails";
 export { default as MovieList } from "./movies/MovieList";
 export { default as MovieCard } from "./movies/MovieCard";
+export { default as MoviesGrid } from "./movies/MoviesGrid";
